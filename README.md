@@ -22,17 +22,7 @@ Featuring a beautiful, glassmorphic **QueryBridge OS** interface, users can quer
 
 If the backend database or AI service is offline, QueryBridge transitions seamlessly into **Quantum Simulation Engine** mode, providing fully functional simulated queries so you can showcase the interface standalone anywhere, anytime.
 
----
 
-## 🎨 Visual Preview
-
-Here is a preview of the QueryBridge user interface in action:
-
-<div align="center">
-  <img src="src/assets/hero.png" alt="QueryBridge Workspace Interface" width="800" style="border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);" />
-</div>
-
----
 
 ## 🚀 Key Features
 
