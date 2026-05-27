@@ -39,7 +39,7 @@ const MOCK_QUERIES = [
     sql: `SELECT p.product_id, p.name, SUM(o.quantity) as total_sold, SUM(o.total_price) as revenue \nFROM order_items o \nJOIN products p ON o.product_id = p.product_id \nWHERE o.order_date >= '2025-01-01' AND o.order_date <= '2025-12-31' \nGROUP BY p.product_id, p.name \nORDER BY total_sold DESC \nLIMIT 5;`,
     columns: ['product_id', 'name', 'total_sold', 'revenue'],
     rows: [
-      { product_id: 'PRD-808', name: 'Antigravity Hover Module v4', total_sold: 1420, revenue: '$283,580.00' },
+      { product_id: 'PRD-808', name: 'Hover Propulsion Module v4', total_sold: 1420, revenue: '$283,580.00' },
       { product_id: 'PRD-102', name: 'Quantum Core Reactor', total_sold: 980, revenue: '$1,460,200.00' },
       { product_id: 'PRD-441', name: 'Cybernetic Neural Link', total_sold: 840, revenue: '$335,160.00' },
       { product_id: 'PRD-009', name: 'Sub-space Receiver', total_sold: 720, revenue: '$71,928.00' },

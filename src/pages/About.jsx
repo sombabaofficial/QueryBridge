@@ -73,7 +73,7 @@ const About = () => {
           </p>
           
           <p className="text-white/70 text-sm leading-relaxed font-sans">
-            Using zero-latency semantic translation, the core AI reasons about database table structures, identifies primary and foreign keys, writes complex joins, aggregates metrics, and executes the results securely. All operations are presented within an antigravity operating system layout, allowing engineers and business teams to co-operate seamlessly.
+            Using zero-latency semantic translation, the core AI reasons about database table structures, identifies primary and foreign keys, writes complex joins, aggregates metrics, and executes the results securely. All operations are presented within a futuristic dashboard layout, allowing engineers and business teams to co-operate seamlessly.
           </p>
 
           <div className="p-4 bg-white/3 border border-white/5 rounded-xl">

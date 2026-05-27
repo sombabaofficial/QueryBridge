@@ -196,7 +196,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
               <div className="border-t border-white/5 pt-6 font-mono text-[10px] text-white/30 space-y-1">
                 <div>QUERYBRIDGE ENGINE v1.0.0-PROTOTYPE</div>
                 <div>SYSTEM LOG LEVEL: VERBOSE</div>
-                <div>THEME: ANTIGRAVITY OS</div>
+                <div>THEME: QUERYBRIDGE OS</div>
               </div>
             </motion.div>
           </>

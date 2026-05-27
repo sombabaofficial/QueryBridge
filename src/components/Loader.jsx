@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { RiSettings3Line } from 'react-icons/ri';
 
 const SYSTEM_LOGS = [
-  "CONNECTING TO ANTIGRAVITY ENGINE CORPS...",
+  "CONNECTING TO QUERYBRIDGE ENGINE CORPS...",
   "PARSING LEXICAL SEMANTICS...",
   "RESOLVING DATABASE DATABASE_RECORDS BINDINGS...",
   "QUERYING OLLAMA GENERATIVE MODEL...",

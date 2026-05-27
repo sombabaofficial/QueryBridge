@@ -50,7 +50,7 @@ const FloatingBackground = () => {
 
       reset() {
         this.x = Math.random() * canvas.width;
-        this.y = canvas.height + 20; // Start below screen (antigravity drift)
+        this.y = canvas.height + 20; // Start below screen (upward drift)
         this.size = Math.random() * 2 + 0.5; // Star size
         this.speedY = -(Math.random() * 0.4 + 0.15); // Negative speed for upward movement
         this.speedX = (Math.random() - 0.5) * 0.15; // Small horizontal drift
@@ -64,7 +64,7 @@ const FloatingBackground = () => {
       }
 
       update() {
-        // Antigravity drift
+        // Upward drift
         this.y += this.speedY;
         this.x += this.speedX;
 
@@ -135,7 +135,7 @@ const FloatingBackground = () => {
       ctx.fillStyle = radialGrad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw grid scanline overlay (antigravity aesthetic)
+      // Draw grid scanline overlay (futuristic aesthetic)
       ctx.fillStyle = 'rgba(0, 240, 255, 0.007)';
       for (let y = 0; y < canvas.height; y += 4) {
         ctx.fillRect(0, y, canvas.width, 1);

@@ -73,7 +73,7 @@ const Home = ({ prompt, setPrompt, queryResult, setQueryResult, isPending, setIs
       {/* Grid containing Input + Schema Sidebar */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start mb-16">
         
-        {/* Schema Sidebar - Floating Antigravity card */}
+        {/* Schema Sidebar - Floating Interactive card */}
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

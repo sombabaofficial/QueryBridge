@@ -18,7 +18,7 @@
 
 **QueryBridge** is an experimental prototype designed to bridge the friction gap between human expression and complex structured database queries. In traditional environments, extracting records requires writing syntax-perfect SQL code. QueryBridge converts colloquial sentences directly into optimized SQL scripts in milliseconds.
 
-Featuring a beautiful, glassmorphic **Antigravity OS** interface, users can query their databases using either direct keyboard prompts or **voice command recognition (Speech-to-Text)**. 
+Featuring a beautiful, glassmorphic **QueryBridge OS** interface, users can query their databases using either direct keyboard prompts or **voice command recognition (Speech-to-Text)**. 
 
 If the backend database or AI service is offline, QueryBridge transitions seamlessly into **Quantum Simulation Engine** mode, providing fully functional simulated queries so you can showcase the interface standalone anywhere, anytime.
 
@@ -53,7 +53,7 @@ The QueryBridge ecosystem connects the following components:
 ```mermaid
 graph LR
     subgraph Client [React Frontend Interface]
-        UI[Antigravity OS Web Client]
+        UI[QueryBridge OS Web Client]
         SIM[Quantum Simulation Engine]
     end
 
