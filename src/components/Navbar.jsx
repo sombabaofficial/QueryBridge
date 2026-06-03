@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { RiHome5Line, RiHistoryLine, RiInformationLine, RiSettings4Line, RiCpuLine } from 'react-icons/ri';
+import { RiHome5Line, RiHistoryLine, RiInformationLine, RiSettings4Line, RiCpuLine, RiSunLine, RiMoonLine } from 'react-icons/ri';
 import logo from '../assets/logo.svg';
 import { getApiUrl, setApiUrl } from '../services/api';
 
-const Navbar = ({ currentPage, setCurrentPage }) => {
+const Navbar = ({ currentPage, setCurrentPage, theme, toggleTheme }) => {
   const [isConfigOpen, setIsConfigOpen] = useState(false);
   const [apiUrl, setApiUrlState] = useState(getApiUrl());
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="sticky top-0 left-0 w-full z-40 px-4 md:px-8 py-4 backdrop-blur-md border-b border-white/5 bg-space-dark/65"
+        className="sticky top-0 left-0 w-full z-40 px-4 md:px-8 py-4 backdrop-blur-md border-b border-theme-text/5 bg-space-dark/65 transition-colors duration-300"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
@@ -49,17 +49,17 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             </div>
             
             <div className="flex flex-col">
-              <span className="font-display font-extrabold text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#00f0ff] via-[#00ffcc] to-[#00ffa2] filter drop-shadow-[0_0_8px_rgba(0,255,200,0.4)]">
+              <span className="font-display font-extrabold text-xl tracking-wider brand-title-navbar">
                 QueryBridge
               </span>
-              <span className="text-[9px] text-white/50 font-mono tracking-widest -mt-1 uppercase">
+              <span className="text-[9px] text-theme-muted font-mono tracking-widest -mt-1 uppercase">
                 AI Trans-SQL Engine
               </span>
             </div>
           </div>
 
           {/* Center Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/5 border border-white/5 rounded-full p-1.5 backdrop-blur-lg">
+          <nav className="hidden md:flex items-center gap-1 bg-theme-text/5 border border-theme-text/5 rounded-full p-1.5 backdrop-blur-lg">
             {menuItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentPage === item.id;
@@ -70,8 +70,8 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                   onClick={() => setCurrentPage(item.id)}
                   className={`relative flex items-center gap-2 px-5 py-2 rounded-full font-display text-xs font-semibold tracking-wide transition-all duration-300 ${
                     isActive 
-                      ? 'text-white' 
-                      : 'text-white/60 hover:text-white hover:bg-white/5'
+                      ? 'text-theme-text' 
+                      : 'text-theme-muted hover:text-theme-text hover:bg-theme-text/5'
                   }`}
                 >
                   <Icon className="text-base" />
@@ -97,12 +97,23 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
               <span>CORE: ONLINE</span>
             </div>
 
+            {/* Theme Toggle Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={toggleTheme}
+              className="p-2.5 rounded-lg bg-theme-text/5 hover:bg-neon-cyan/10 border border-theme-text/10 hover:border-neon-cyan/40 text-theme-text/80 hover:text-neon-cyan transition-all duration-300 shadow-[0_0_10px_rgba(0,240,255,0.05)] cursor-pointer"
+              title={theme === 'dark' ? "Switch to Light Theme" : "Switch to Dark Theme"}
+            >
+              {theme === 'dark' ? <RiSunLine className="text-lg" /> : <RiMoonLine className="text-lg" />}
+            </motion.button>
+
             {/* Config Toggle Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsConfigOpen(true)}
-              className="p-2.5 rounded-lg bg-white/5 hover:bg-neon-purple/10 border border-white/10 hover:border-neon-purple/40 text-white/80 hover:text-neon-purple transition-all duration-300 shadow-[0_0_10px_rgba(171,0,255,0.05)] cursor-pointer"
+              className="p-2.5 rounded-lg bg-theme-text/5 hover:bg-neon-purple/10 border border-theme-text/10 hover:border-neon-purple/40 text-theme-text/80 hover:text-neon-purple transition-all duration-300 shadow-[0_0_10px_rgba(171,0,255,0.05)] cursor-pointer"
               title="API Configuration"
             >
               <RiSettings4Line className="text-lg" />
@@ -111,7 +122,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         </div>
 
         {/* Small screen mobile navigation overlay */}
-        <div className="flex md:hidden justify-center items-center gap-6 mt-4 pt-3 border-t border-white/5">
+        <div className="flex md:hidden justify-center items-center gap-6 mt-4 pt-3 border-t border-theme-text/5">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = currentPage === item.id;
@@ -121,7 +132,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                 key={item.id}
                 onClick={() => setCurrentPage(item.id)}
                 className={`flex flex-col items-center gap-1 text-[11px] font-semibold tracking-wider font-display transition-all duration-300 ${
-                  isActive ? 'text-neon-cyan' : 'text-white/50'
+                  isActive ? 'text-neon-cyan' : 'text-theme-muted'
                 }`}
               >
                 <Icon className="text-lg" />
@@ -154,13 +165,13 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
               className="fixed right-0 top-0 h-full w-full max-w-md bg-space-deep border-l border-neon-cyan/20 p-6 shadow-[0_0_50px_rgba(0,0,0,0.8)] z-50 overflow-y-auto flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-                  <h3 className="font-display font-bold text-lg text-white tracking-wide">
+                <div className="flex items-center justify-between border-b border-theme-text/10 pb-4 mb-6">
+                  <h3 className="font-display font-bold text-lg text-theme-text tracking-wide">
                     SYSTEM SETTINGS
                   </h3>
                   <button 
                     onClick={() => setIsConfigOpen(false)}
-                    className="text-white/40 hover:text-white text-sm"
+                    className="text-theme-muted hover:text-theme-text text-sm cursor-pointer"
                   >
                     CLOSE [ESC]
                   </button>
@@ -168,7 +179,7 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
 
                 <form onSubmit={handleSaveConfig} className="space-y-6">
                   <div>
-                    <label className="block font-mono text-[11px] text-white/50 tracking-wider mb-2 uppercase">
+                    <label className="block font-mono text-[11px] text-theme-muted tracking-wider mb-2 uppercase">
                       AI Bridge Endpoint URL
                     </label>
                     <input
@@ -176,10 +187,10 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                       value={apiUrl}
                       onChange={(e) => setApiUrlState(e.target.value)}
                       placeholder="e.g. http://localhost:5000/api"
-                      className="w-full bg-black/50 border border-white/10 rounded-lg p-3 text-sm font-mono text-white focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan/30 transition-all duration-300"
+                      className="w-full bg-theme-input border border-theme-input-border rounded-lg p-3 text-sm font-mono text-theme-text focus:outline-none focus:border-neon-cyan focus:ring-1 focus:ring-neon-cyan/30 transition-all duration-300"
                       required
                     />
-                    <p className="text-[10px] font-mono text-white/40 mt-2 leading-relaxed">
+                    <p className="text-[10px] font-mono text-theme-dim mt-2 leading-relaxed">
                       By default, QueryBridge runs in <span className="text-neon-cyan">Quantum Simulation</span> mode. Changing this URL routes natural language requests to a real Flask service hosting LLM SQL compilation modules.
                     </p>
                   </div>
@@ -193,10 +204,10 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                 </form>
               </div>
 
-              <div className="border-t border-white/5 pt-6 font-mono text-[10px] text-white/30 space-y-1">
+              <div className="border-t border-theme-text/5 pt-6 font-mono text-[10px] text-theme-dim space-y-1">
                 <div>QUERYBRIDGE ENGINE v1.0.0-PROTOTYPE</div>
                 <div>SYSTEM LOG LEVEL: VERBOSE</div>
-                <div>THEME: QUERYBRIDGE OS</div>
+                <div>THEME: {theme.toUpperCase()}</div>
               </div>
             </motion.div>
           </>
