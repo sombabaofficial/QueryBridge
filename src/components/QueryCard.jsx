@@ -74,16 +74,18 @@ const QueryCard = ({ queryResult, onTypingComplete }) => {
 
   useEffect(() => {
     setTypedSql('');
-    let index = 0;
+    let currentIndex = 0;
     const interval = setInterval(() => {
-      setTypedSql((prev) => prev + sql.charAt(index));
-      index++;
-      if (index >= sql.length) {
+      if (currentIndex >= sql.length) {
         clearInterval(interval);
         if (onTypingComplete) {
           onTypingComplete();
         }
+        return;
       }
+      const char = sql.charAt(currentIndex);
+      setTypedSql((prev) => prev + char);
+      currentIndex++;
     }, 8);
     return () => clearInterval(interval);
   }, [sql, onTypingComplete]);

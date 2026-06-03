@@ -1,3 +1,4 @@
+// QueryBridge AI SQL translation services and mock simulation config
 import axios from 'axios';
 
 // Load initial API base URL from localStorage or fallback to standard Flask local development port
