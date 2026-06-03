@@ -67,7 +67,7 @@ const TOKEN_COLORS = {
   plain:    '#e2e8f0',   // light — identifiers, whitespace
 };
 
-const QueryCard = ({ queryResult }) => {
+const QueryCard = ({ queryResult, onTypingComplete }) => {
   const { query, sql, latency, tokensUsed, database, mode } = queryResult;
   const [copied, setCopied] = useState(false);
   const [typedSql, setTypedSql] = useState('');
@@ -78,10 +78,15 @@ const QueryCard = ({ queryResult }) => {
     const interval = setInterval(() => {
       setTypedSql((prev) => prev + sql.charAt(index));
       index++;
-      if (index >= sql.length) clearInterval(interval);
+      if (index >= sql.length) {
+        clearInterval(interval);
+        if (onTypingComplete) {
+          onTypingComplete();
+        }
+      }
     }, 8);
     return () => clearInterval(interval);
-  }, [sql]);
+  }, [sql, onTypingComplete]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(sql);

@@ -26,12 +26,15 @@ const FEATURE_PILLS = [
 
 const Home = ({ prompt, setPrompt, queryResult, setQueryResult, isPending, setIsPending }) => {
   const resultsRef = useRef(null);
+  const resultsTableRef = useRef(null);
+  const [showTable, setShowTable] = useState(false);
 
   const handleSubmit = async (overridePrompt) => {
     const activePrompt = typeof overridePrompt === 'string' ? overridePrompt : prompt;
     if (!activePrompt.trim()) return;
     setIsPending(true);
     setQueryResult(null);
+    setShowTable(false);
 
     // Smooth scroll to results/loader area
     setTimeout(() => {
@@ -54,6 +57,15 @@ const Home = ({ prompt, setPrompt, queryResult, setQueryResult, isPending, setIs
       };
       localStorage.setItem('QUERYBRIDGE_HISTORY', JSON.stringify([newHistoryItem, ...history]));
     }
+  };
+
+  const handleTypingComplete = () => {
+    setTimeout(() => {
+      setShowTable(true);
+      setTimeout(() => {
+        resultsTableRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }, 1500);
   };
 
   const handleColumnClick = (colName) => {
@@ -265,8 +277,9 @@ const Home = ({ prompt, setPrompt, queryResult, setQueryResult, isPending, setIs
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
               >
-                <QueryCard queryResult={queryResult} />
-                <ResultTable queryResult={queryResult} />
+                <QueryCard queryResult={queryResult} onTypingComplete={handleTypingComplete} />
+                <div ref={resultsTableRef} className="scroll-mt-10" />
+                {showTable && <ResultTable queryResult={queryResult} />}
               </motion.div>
             )}
 
